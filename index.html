@@ -52,7 +52,75 @@ button:hover{transform:scale(1.06)}
 @keyframes shake {
   from { transform: translateX(-3px); }
   to { transform: translateX(3px); }
+
+/* Cute crying cartoon animation */
+.cry-scene {
+  margin: 16px auto;
+  text-align: center;
+  animation: sadBounce 0.7s infinite alternate;
 }
+
+.cry-character {
+  position: relative;
+  display: inline-block;
+  font-size: 100px;
+  line-height: 1.4;
+  animation: sadShake 0.22s infinite alternate;
+}
+
+.cry-character .arm {
+  position: absolute;
+  top: 42px;
+  font-size: 38px;
+  animation: armWave 0.35s infinite alternate;
+}
+
+.cry-character .left {
+  left: -24px;
+  transform-origin: top right;
+}
+
+.cry-character .right {
+  right: -24px;
+  transform-origin: top left;
+  animation-delay: 0.2s;
+}
+
+.cry-tears {
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  font-size: 28px;
+  animation: tearsFall 0.45s infinite;
+}
+
+.cry-caption {
+  font-size: 19px;
+  font-weight: bold;
+  color: #e75480;
+  margin-top: 8px;
+}
+
+@keyframes sadBounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-9px); }
+}
+
+@keyframes sadShake {
+  from { rotate: -5deg; }
+  to { rotate: 5deg; }
+}
+
+@keyframes armWave {
+  from { rotate: -25deg; }
+  to { rotate: 25deg; }
+}
+
+@keyframes tearsFall {
+  0% { transform: translate(-50%, 0); opacity: 1; }
+  100% { transform: translate(-50%, 25px); opacity: 0.2; }
+}
+ 
  
 </style>
 </head>
@@ -126,14 +194,35 @@ function answerYes(){
 
 
 
-function answerNo(){
+
+let cryCount = 0;
+
+function answerNo() {
+  const characters = [
+    { face: "🐱", arms: "🐾", text: "MEOWWW! TREAT DAO! 😭" },
+    { face: "🧸", arms: "🙌", text: "TEDDY KANDTASE! 🥹💔" },
+    { face: "😿", arms: "🐾", text: "PLEASEEE! 🥺" },
+    { face: "🐻", arms: "🙌", text: "AMI KANBOOO! 😭" },
+    { face: "🐱", arms: "😭", text: "NO TREAT?! NOOO! 💔" },
+    { face: "🧸", arms: "🥺", text: "EKTA TREAT PLZZZ! 🍰" },
+    { face: "🐈", arms: "🐾", text: "MEOW MEOWWW! 😿" },
+    { face: "🐻", arms: "😭", text: "TREAT CHAI! 🥹" },
+    { face: "😿", arms: "🙌", text: "MY LITTLE HEART! 💔" },
+    { face: "🐱", arms: "🐾", text: "LAST TIME BOLCHI... TREAT DAO! 😭" }
+  ];
+
+  const c = characters[cryCount % characters.length];
+  cryCount++;
+
   document.getElementById("message").innerHTML =
-    '<img src="https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUyZ2wwczVwbmlwbGRqNDA0aHkyZGt1YzN1d3p0a3FueTdrbW8xOXVvZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GwskZm1jXg8cDvuZJ6/giphy.gif" ' +
-    'alt="Crying cat" style="width:220px;max-width:90%;border-radius:15px;">' +
-    '<div class="crying-text">' +
-    'MEOWWWWW 😭💔<br>' +
-    'TREAT O DIBA NA?! 🥹🙏<br>' +
-    'AMI KANBOOOO 😭🐾' +
+    '<div class="cry-scene">' +
+      '<div class="cry-character">' +
+        c.face +
+        '<span class="arm left">' + c.arms + '</span>' +
+        '<span class="arm right">' + c.arms + '</span>' +
+        '<span class="cry-tears">💧</span>' +
+      '</div>' +
+      '<div class="cry-caption">' + c.text + '</div>' +
     '</div>';
 }
  
