@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Little Birthday Surprise 🎀</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;display:grid;place-items:center;
+ background:linear-gradient(135deg,#ffe5ef,#f5e8ff,#fff3dc);
+ font-family:Arial,sans-serif;color:#70445c;text-align:center;
+ padding:20px;overflow-x:hidden
+}
+.card{
+ background:#ffffffdc;padding:30px 22px;border-radius:28px;
+ max-width:420px;width:100%;box-shadow:0 12px 40px #bc82a522;
+ animation:pop .7s ease
+}
+@keyframes pop{from{opacity:0;transform:translateY(15px)}
+to{opacity:1;transform:translateY(0)}}
+.cat{font-size:78px;animation:bounce 1.6s infinite}
+@keyframes bounce{50%{transform:translateY(-9px)}}
+h1{color:#d65c91;font-size:28px}
+p{line-height:1.7}
+button{
+ border:0;border-radius:30px;padding:13px 22px;margin:7px;
+ font-size:16px;cursor:pointer;background:#ed8bb3;color:white;
+ transition:transform .2s
+}
+button:hover{transform:scale(1.06)}
+.secondary{background:#e7d9ef;color:#70445c}
+.hidden{display:none}
+#message{font-weight:bold;color:#d65c91;margin-top:18px}
+.heart{position:fixed;top:-30px;animation:fall 6s linear infinite;
+ pointer-events:none;z-index:-1}
+@keyframes fall{to{transform:translateY(110vh) rotate(300deg)}}
+</style>
+</head>
+<body>
+<div class="card">
+  <section id="first">
+    <div class="cat">🐱🎀</div>
+    <h1>Hey, Birthday Star! 🎂</h1>
+    <p>A tiny surprise has been made just for you. 💗</p>
+    <button onclick="openWish()">Open your surprise ✨</button>
+  </section>
+
+  <section id="second" class="hidden">
+    <div class="cat">🐱💗</div>
+    <h1>Happy Birthday! 🎉</h1>
+    <p>
+      I hope your special day is filled with happiness,
+      laughter and lots of lovely moments. 🌷
+      May Allah fulfil your dreams and bless you with
+      peace, success and endless reasons to smile.
+    </p>
+    <p>You deserve all the good things life has to offer. 💌</p>
+    <button onclick="openTreat()">One last question... 👀</button>
+  </section>
+
+  <section id="third" class="hidden">
+    <div class="cat">🐱🍰</div>
+    <h1>Treat for this kitty? 🥹</h1>
+    <p>Will you give me a birthday treat? 🎀</p>
+    <button onclick="answerYes()">YES! 💗</button>
+    <button class="secondary" onclick="answerNo()">No 🙈</button>
+    <div id="message"></div>
+  </section>
+</div>
+
+<script>
+function show(id){
+  document.querySelectorAll("section").forEach(s=>{
+    s.classList.add("hidden");
+  });
+  document.getElementById(id).classList.remove("hidden");
+}
+function openWish(){show("second")}
+function openTreat(){show("third")}
+function answerYes(){
+  document.getElementById("message").textContent =
+    "YAYYY! 🥹💗 This kitty is waiting for its treat!";
+}
+function answerNo(){
+  document.getElementById("message").textContent =
+    "Awww! 🥺 This kitty will ask again next year! 🎀";
+}
+for(let i=0;i<14;i++){
+  let h=document.createElement("div");
+  h.className="heart";
+  h.textContent=["💗","💕","✨","🌸"][i%4];
+  h.style.left=Math.random()*100+"%";
+  h.style.animationDelay=Math.random()*6+"s";
+  h.style.animationDuration=(4+Math.random()*5)+"s";
+  document.body.appendChild(h);
+}
+</script>
+</body>
+</html>
