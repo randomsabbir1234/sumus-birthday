@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A Little Birthday Surprise 🎀</title>
+<title>A Little Birthday Surprise for SUMU 🎀</title>
 <style>
 *{box-sizing:border-box}
 body{
@@ -36,6 +36,24 @@ button:hover{transform:scale(1.06)}
 .heart{position:fixed;top:-30px;animation:fall 6s linear infinite;
  pointer-events:none;z-index:-1}
 @keyframes fall{to{transform:translateY(110vh) rotate(300deg)}}
+ 
+.crying-cat {
+  display: inline-block;
+  font-size: 75px;
+  animation: sob 0.25s infinite alternate;
+}
+@keyframes sob {
+  from { transform: rotate(-12deg) scale(1); }
+  to { transform: rotate(12deg) scale(1.12); }
+}
+.crying-text {
+  animation: shake 0.15s infinite alternate;
+}
+@keyframes shake {
+  from { transform: translateX(-3px); }
+  to { transform: translateX(3px); }
+}
+ 
 </style>
 </head>
 <body>
@@ -51,12 +69,27 @@ button:hover{transform:scale(1.06)}
     <div class="cat">🐱💗</div>
     <h1>Happy Birthday! 🎉</h1>
     <p>
-      I hope your special day is filled with happiness,
-      laughter and lots of lovely moments. 🌷
-      May Allah fulfil your dreams and bless you with
-      peace, success and endless reasons to smile.
-    </p>
-    <p>You deserve all the good things life has to offer. 💌</p>
+  tumi janle ovak hobe je ami first time karo birthday te
+  etto kostow kore ekta wish banaitachii, so maybe it's a
+  little special,, 🐒
+  <br><br>
+  jaihok, bolte chaile toh onek kichui bola jay, onek kotha
+  bolar iccha ache but onno konodin...🙂
+  <br><br>
+  you know? you are such a wonderful singer 😭❤️ I can't
+  explain it in words,,, asolei tumar voice ta onk sundor
+  trust me or not 🤌😚
+  <br><br>
+  r sobcheye funny hochhe j majhe moddhe reels e random
+  kono meyer gaan dekhleo tomar kotha mone pore jay,,,
+  😭🥹 emonki tomar kotha vebei oder reels e like diye dei 💀🤦‍♂️
+  <br><br>
+  anyway, happy birthday once again. ❤️ always keep singing,
+  ar emnei shundor theko,,,sobsmy hashikhushi theko,,,
+  gaan geyo,,, maje moddhe mon cahile amareu dui ekta dio😭🙏
+  tomar jonno mon theke onek onek shubhokamona roilo 🫶🏻
+</p>
+   
     <button onclick="openTreat()">One last question... 👀</button>
   </section>
 
@@ -79,14 +112,21 @@ function show(id){
 }
 function openWish(){show("second")}
 function openTreat(){show("third")}
-function answerYes(){
-  document.getElementById("message").textContent =
-    "YAYYY! 🥹💗 This kitty is waiting for its treat!";
+ function answerYes(){
+  document.getElementById("message").innerHTML =
+    "😻💗 YAYYYY! TREAT CONFIRMED! 🍰🎉";
 }
+
 function answerNo(){
-  document.getElementById("message").textContent =
-    "Awww! 🥺 This kitty will ask again next year! 🎀";
+  document.getElementById("message").innerHTML =
+    '<div class="crying-cat">😭💦</div>' +
+    '<div class="crying-text">' +
+    'MEOWWWWW 😭💔<br>' +
+    'TREAT O DIBA NA?! 🥹🙏<br>' +
+    'AMI KANBOOOO 😭🐾' +
+    '</div>';
 }
+
 for(let i=0;i<14;i++){
   let h=document.createElement("div");
   h.className="heart";
