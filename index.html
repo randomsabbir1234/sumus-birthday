@@ -52,7 +52,7 @@ button:hover{transform:scale(1.06)}
 @keyframes shake {
   from { transform: translateX(-3px); }
   to { transform: translateX(3px); }
-
+}
 /* Cute crying cartoon animation */
 .cry-scene {
   margin: 16px auto;
@@ -119,6 +119,75 @@ button:hover{transform:scale(1.06)}
 @keyframes tearsFall {
   0% { transform: translate(-50%, 0); opacity: 1; }
   100% { transform: translate(-50%, 25px); opacity: 0.2; }
+}
+ 
+/* Hand-drawn cartoon character */
+.cartoon-scene {
+  text-align: center;
+  margin: 18px auto;
+}
+
+.cartoon-svg {
+  width: 220px;
+  max-width: 85%;
+  overflow: visible;
+}
+
+.cartoon-head {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: headSob .3s infinite alternate;
+}
+
+.cartoon-arm-left {
+  transform-box: fill-box;
+  transform-origin: top right;
+  animation: leftCry .35s infinite alternate;
+}
+
+.cartoon-arm-right {
+  transform-box: fill-box;
+  transform-origin: top left;
+  animation: rightCry .35s infinite alternate;
+}
+
+.cartoon-body {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bodySob .3s infinite alternate;
+}
+
+.cartoon-tear {
+  animation: tearDrop .65s infinite;
+}
+
+.cartoon-tear.two {
+  animation-delay: .3s;
+}
+
+@keyframes headSob {
+  from { transform: rotate(-5deg) translateY(0); }
+  to { transform: rotate(5deg) translateY(4px); }
+}
+
+@keyframes leftCry {
+  from { transform: rotate(-25deg); }
+  to { transform: rotate(20deg); }
+}
+
+@keyframes rightCry {
+  from { transform: rotate(25deg); }
+  to { transform: rotate(-20deg); }
+}
+
+@keyframes bodySob {
+  from { transform: translateY(0); }
+  to { transform: translateY(4px); }
+}
+
+@keyframes tearDrop {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(24px); opacity: .15; }
 }
  
  
@@ -191,40 +260,118 @@ function answerYes(){
     '</div>';
 }
  
-
-
-
-
 let cryCount = 0;
 
 function answerNo() {
-  const characters = [
-    { face: "🐱", arms: "🐾", text: "MEOWWW! TREAT DAO! 😭" },
-    { face: "🧸", arms: "🙌", text: "TEDDY KANDTASE! 🥹💔" },
-    { face: "😿", arms: "🐾", text: "PLEASEEE! 🥺" },
-    { face: "🐻", arms: "🙌", text: "AMI KANBOOO! 😭" },
-    { face: "🐱", arms: "😭", text: "NO TREAT?! NOOO! 💔" },
-    { face: "🧸", arms: "🥺", text: "EKTA TREAT PLZZZ! 🍰" },
-    { face: "🐈", arms: "🐾", text: "MEOW MEOWWW! 😿" },
-    { face: "🐻", arms: "😭", text: "TREAT CHAI! 🥹" },
-    { face: "😿", arms: "🙌", text: "MY LITTLE HEART! 💔" },
-    { face: "🐱", arms: "🐾", text: "LAST TIME BOLCHI... TREAT DAO! 😭" }
+  const messages = [
+    "MEOWWW! TREAT DAO! 😭",
+    "PLEASEEE, EKTA TREAT! 🥹",
+    "AMI KANBOOO! 💔",
+    "NO TREAT?! NOOO! 😿",
+    "LAST TIME BOLCHI... TREAT DAO! 😭"
   ];
 
-  const c = characters[cryCount % characters.length];
   cryCount++;
 
-  document.getElementById("message").innerHTML =
-    '<div class="cry-scene">' +
-      '<div class="cry-character">' +
-        c.face +
-        '<span class="arm left">' + c.arms + '</span>' +
-        '<span class="arm right">' + c.arms + '</span>' +
-        '<span class="cry-tears">💧</span>' +
-      '</div>' +
-      '<div class="cry-caption">' + c.text + '</div>' +
-    '</div>';
+  document.getElementById("message").innerHTML = `
+    <div class="cartoon-scene">
+      <svg class="cartoon-svg" viewBox="0 0 220 240"
+           role="img" aria-label="Crying cartoon kitten">
+
+        <!-- Ears -->
+        <path d="M62 69 L55 24 L91 48 Z"
+              fill="#f7b8cf" stroke="#bd7798" stroke-width="3"/>
+        <path d="M129 48 L165 24 L158 69 Z"
+              fill="#f7b8cf" stroke="#bd7798" stroke-width="3"/>
+
+        <!-- Body -->
+        <g class="cartoon-body">
+          <ellipse cx="110" cy="170" rx="48" ry="52"
+                   fill="#fff0f5" stroke="#bd7798" stroke-width="3"/>
+          <ellipse cx="110" cy="178" rx="27" ry="31"
+                   fill="#ffdce9"/>
+
+          <!-- Feet -->
+          <ellipse cx="83" cy="211" rx="22" ry="12"
+                   fill="#fff0f5" stroke="#bd7798" stroke-width="3"/>
+          <ellipse cx="137" cy="211" rx="22" ry="12"
+                   fill="#fff0f5" stroke="#bd7798" stroke-width="3"/>
+        </g>
+
+        <!-- Left waving paw -->
+        <g class="cartoon-arm-left">
+          <path d="M78 143 Q43 153 47 116"
+                fill="none" stroke="#fff0f5"
+                stroke-width="20" stroke-linecap="round"/>
+          <path d="M78 143 Q43 153 47 116"
+                fill="none" stroke="#bd7798"
+                stroke-width="3" stroke-linecap="round"/>
+          <circle cx="47" cy="113" r="12"
+                  fill="#fff0f5" stroke="#bd7798" stroke-width="3"/>
+        </g>
+
+        <!-- Right waving paw -->
+        <g class="cartoon-arm-right">
+          <path d="M142 143 Q177 153 173 116"
+                fill="none" stroke="#fff0f5"
+                stroke-width="20" stroke-linecap="round"/>
+          <path d="M142 143 Q177 153 173 116"
+                fill="none" stroke="#bd7798"
+                stroke-width="3" stroke-linecap="round"/>
+          <circle cx="173" cy="113" r="12"
+                  fill="#fff0f5" stroke="#bd7798" stroke-width="3"/>
+        </g>
+
+        <!-- Head -->
+        <g class="cartoon-head">
+          <circle cx="110" cy="87" r="56"
+                  fill="#fff0f5" stroke="#bd7798" stroke-width="3"/>
+
+          <!-- Eyes -->
+          <path d="M77 80 Q85 91 93 80"
+                fill="none" stroke="#70445c" stroke-width="4"
+                stroke-linecap="round"/>
+          <path d="M127 80 Q135 91 143 80"
+                fill="none" stroke="#70445c" stroke-width="4"
+                stroke-linecap="round"/>
+
+          <!-- Nose and crying mouth -->
+          <path d="M105 94 Q110 89 115 94 Q110 101 105 94"
+                fill="#e889aa"/>
+          <path d="M103 107 Q110 99 117 107"
+                fill="none" stroke="#70445c" stroke-width="3"
+                stroke-linecap="round"/>
+
+          <!-- Blush -->
+          <ellipse cx="75" cy="98" rx="10" ry="5" fill="#f6a9c5"/>
+          <ellipse cx="145" cy="98" rx="10" ry="5" fill="#f6a9c5"/>
+
+          <!-- Tears -->
+          <g class="cartoon-tear">
+            <path d="M82 91 Q72 106 82 111 Q92 106 82 91"
+                  fill="#70cfff"/>
+          </g>
+          <g class="cartoon-tear two">
+            <path d="M138 91 Q128 106 138 111 Q148 106 138 91"
+                  fill="#70cfff"/>
+          </g>
+        </g>
+      </svg>
+
+      <div class="cry-caption">
+        ${messages[(cryCount - 1) % messages.length]}
+      </div>
+    </div>
+  `;
 }
+ 
+
+
+
+
+
+
+   
  
 
 for(let i=0;i<14;i++){
