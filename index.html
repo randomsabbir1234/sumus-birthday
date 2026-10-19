@@ -112,20 +112,31 @@ function show(id){
 }
 function openWish(){show("second")}
 function openTreat(){show("third")}
- function answerYes(){
+
+function answerYes(){
   document.getElementById("message").innerHTML =
-    "😻💗 YAYYYY! TREAT CONFIRMED! 🍰🎉";
+    '<img src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyMnd5anhkbW4zMmt6ZHhwdTB2MnVkenN1NTFoZnBmeGhmdGRoOTd4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/j0wbpJI4ZOte5EM0b1/giphy.gif" ' +
+    'alt="Laughing GIF" style="width:220px;max-width:90%;border-radius:15px;">' +
+    '<div class="crying-text">' +
+    '😹💗 YAYYYY!<br>' +
+    'TREAT CONFIRMED! 🍰🎉' +
+    '</div>';
 }
+ 
+
+
 
 function answerNo(){
   document.getElementById("message").innerHTML =
-    '<div class="crying-cat">😭💦</div>' +
+    '<img src="https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUyZ2wwczVwbmlwbGRqNDA0aHkyZGt1YzN1d3p0a3FueTdrbW8xOXVvZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GwskZm1jXg8cDvuZJ6/giphy.gif" ' +
+    'alt="Crying cat" style="width:220px;max-width:90%;border-radius:15px;">' +
     '<div class="crying-text">' +
     'MEOWWWWW 😭💔<br>' +
     'TREAT O DIBA NA?! 🥹🙏<br>' +
     'AMI KANBOOOO 😭🐾' +
     '</div>';
 }
+ 
 
 for(let i=0;i<14;i++){
   let h=document.createElement("div");
