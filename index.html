@@ -1,520 +1,144 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Lovely Surprise for SUMU 🎀</title>
-
+<meta name="theme-color" content="#ffb6d2">
+<title>A Little Birthday Surprise for SUMU 🎀</title>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  width: 100%;
-  min-height: 100%;
-  font-family: "Trebuchet MS", sans-serif;
-}
-
-body {
-  overflow-x: hidden;
-  color: #8d3566;
-  background: #fff0f6;
-}
-
-.page {
-  position: relative;
-  isolation: isolate;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  padding: 28px 16px 45px;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse at 10% 10%, #fff 0%, transparent 38%),
-    radial-gradient(ellipse at 90% 35%, #ffe0ef 0%, transparent 42%),
-    linear-gradient(160deg, #fff4f9, #ffd8eb 52%, #fff0f6);
-}
-
-.content {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  max-width: 460px;
-  margin: auto;
-}
-
-.page-label {
-  margin: 0 0 12px 8px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #e75b9c;
-  text-shadow: 0 1px white;
-}
-
-.card {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 25px;
-  border: 3px solid #ff8fbc;
-  border-radius: 25px;
-  background: rgba(255,255,255,.66);
-  box-shadow:
-    0 7px 22px rgba(220, 89, 151, .13),
-    inset 0 0 18px rgba(255, 255, 255, .65);
-  backdrop-filter: blur(4px);
-}
-
-.greeting {
-  min-height: 190px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 25px 12px;
-  border-radius: 8px;
-}
-
-.greeting h1 {
-  font-family: Georgia, serif;
-  font-size: clamp(25px, 7vw, 35px);
-  line-height: 1.45;
-  background: linear-gradient(
-    90deg,
-    #ff579a,
-    #b875e8,
-    #f3a34c,
-    #ff579a
-  );
-  background-size: 250% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: rainbow 5s linear infinite;
-}
-
-.greeting p {
-  margin-top: 10px;
-  color: #d45c97;
-  font-size: 15px;
-  letter-spacing: 1px;
-}
-
-.question {
-  min-height: 235px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 25px 14px;
-  text-align: center;
-  border: 5px solid #ff9dc5;
-  border-radius: 32px;
-}
-
-.question h2 {
-  font-size: clamp(28px, 7.5vw, 40px);
-  font-weight: 600;
-  line-height: 1.4;
-  color: #dc5c9a;
-  text-shadow: 0 2px white;
-}
-
-.buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 0 0 65px;
-  gap: 12px;
-}
-
-.choice {
-  min-height: 105px;
-  border: 4px solid #ff91bd;
-  border-radius: 27px;
-  background: linear-gradient(145deg, #fff, #ffe2f0);
-  color: #db5798;
-  font-size: 24px;
-  font-weight: bold;
-  box-shadow: 0 5px 13px #f6b4d3;
-  cursor: pointer;
-  transition: transform .2s ease;
-}
-
-.choice:nth-child(2) {
-  color: #9c69c8;
-  border-color: #d5a0ef;
-  background: linear-gradient(145deg, #fff, #f6e5ff);
-}
-
-.choice:active {
-  transform: scale(.94);
-}
-
-.result {
-  display: none;
-  margin: -35px 0 60px;
-  padding: 23px 12px;
-  text-align: center;
-  border: 2px solid #ed94c0;
-  border-radius: 22px;
-  background: rgba(255,255,255,.85);
-  color: #cb4e8c;
-  font-size: 20px;
-  line-height: 1.7;
-  animation: pop .4s ease;
-}
-
-/* Falling cute emojis */
-.fall-layer {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.falling {
-  position: absolute;
-  top: -55px;
-  left: var(--x);
-  font-size: var(--size);
-  opacity: 0;
-  animation: fall var(--duration) linear var(--delay) infinite;
-  filter: drop-shadow(0 2px 3px rgba(220, 70, 140, .15));
-  will-change: transform;
-}
-
-@keyframes fall {
-  0% {
-    transform: translate3d(0, -30px, 0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: .95;
-  }
-  85% {
-    opacity: .85;
-  }
-  100% {
-    transform: translate3d(var(--drift), 110vh, 0) rotate(330deg);
-    opacity: 0;
-  }
-}
-
-/* Real CSS flower garden */
-.flower-section {
-  position: relative;
-  text-align: center;
-  margin-top: 10px;
-  padding-top: 5px;
-}
-
-.flower-section h2 {
-  font-size: clamp(34px, 9vw, 47px);
-  font-weight: 600;
-  line-height: 1.3;
-  background: linear-gradient(
-    90deg,
-    #f5a04e,
-    #ed63a5,
-    #ad79e9,
-    #ef76ac
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.flower-section p {
-  margin-top: 9px;
-  font-size: 14px;
-  color: #c65c94;
-  letter-spacing: 1px;
-}
-
-.garden {
-  position: relative;
-  width: 100%;
-  height: 265px;
-  margin-top: 15px;
-  overflow: hidden;
-  border-radius: 25px;
-  border: 2px solid rgba(255, 146, 190, .5);
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,.5),
-    rgba(255,203,227,.45)
-  );
-}
-
-.ground {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 24px;
-  background: linear-gradient(#b6d89b, #82bd81);
-  border-radius: 50% 50% 0 0;
-}
-
-.flower {
-  position: absolute;
-  bottom: 13px;
-  left: var(--x);
-  width: var(--w);
-  height: var(--h);
-  transform-origin: bottom center;
-  transform: scaleY(0);
-  animation: grow 1.6s cubic-bezier(.2,.8,.3,1) forwards;
-  animation-delay: var(--delay);
-}
-
-.stem {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  height: 78%;
-  width: 3px;
-  transform: translateX(-50%);
-  background: linear-gradient(#6cba69, #438c58);
-  border-radius: 50%;
-}
-
-.leaf {
-  position: absolute;
-  width: 17px;
-  height: 9px;
-  background: #72bb73;
-  border-radius: 100% 0 100% 0;
-}
-
-.leaf.left {
-  bottom: 29%;
-  left: 50%;
-  transform: rotate(20deg);
-}
-
-.leaf.right {
-  bottom: 45%;
-  right: 50%;
-  transform: rotate(200deg);
-}
-
-.bloom {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 34px;
-  height: 34px;
-  transform: translateX(-50%);
-  animation: sway 3s ease-in-out infinite alternate;
-}
-
-.petal {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 12px;
-  height: 18px;
-  margin-left: -6px;
-  margin-top: -15px;
-  border-radius: 50% 50% 40% 40%;
-  background: var(--color);
-  transform-origin: 50% 15px;
-  transform: rotate(var(--angle));
-  box-shadow: 0 0 7px rgba(255,255,255,.6);
-}
-
-.flower-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 9px;
-  height: 9px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: #ffe58d;
-  box-shadow: 0 0 8px #ffc75c;
-}
-
-.footer {
-  margin-top: 35px;
-  text-align: center;
-  color: #d36b9d;
-  font-size: 13px;
-  letter-spacing: 1px;
-}
-
-@keyframes grow {
-  to { transform: scaleY(1); }
-}
-
-@keyframes sway {
-  from { rotate: -5deg; }
-  to { rotate: 5deg; }
-}
-
-@keyframes rainbow {
-  to { background-position: 250% center; }
-}
-
-@keyframes pop {
-  from { opacity: 0; transform: scale(.94); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .falling, .greeting h1 {
-    animation-duration: 20s;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Pacifico&display=swap');
+:root{--pink:#ff77ad;--deep:#d94c88;--pale:#fff0f6;--purple:#a58bdf;--ink:#603c55}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;padding:18px 12px;display:flex;align-items:center;justify-content:center;font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:linear-gradient(135deg,#ffe5ef,#f5e8ff,#fff3dc);overflow-x:hidden}
+.floaties{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.floaties span{position:absolute;bottom:-40px;opacity:.55;animation:floatUp 10s linear infinite;font-size:22px}
+.floaties span:nth-child(1){left:8%;animation-delay:0s}.floaties span:nth-child(2){left:25%;animation-delay:3s}.floaties span:nth-child(3){left:48%;animation-delay:1s}.floaties span:nth-child(4){left:70%;animation-delay:5s}.floaties span:nth-child(5){left:90%;animation-delay:2s}
+@keyframes floatUp{to{transform:translateY(-115vh) rotate(30deg);opacity:0}}
+.card{position:relative;z-index:1;width:min(100%,470px);min-height:590px;padding:28px 22px 24px;border:2px solid #fff;border-radius:30px;background:rgba(255,255,255,.83);box-shadow:0 18px 50px #ce7ca633;text-align:center;overflow:hidden}
+.page{display:none;animation:appear .35s ease}.page.active{display:block}
+@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+h1,h2,p{margin-top:0}h1{font-size:clamp(1.8rem,7vw,2.45rem);line-height:1.25;color:var(--deep)}h2{font-size:1.5rem;color:#b34f89}
+.script{font-family:Pacifico,cursive;font-weight:400}.subtitle{font-size:1.12rem;line-height:1.7}.small{font-size:.93rem;line-height:1.7}.question{font-size:1.15rem;font-weight:800;margin:20px 0 14px}
+.btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:20px 0 8px}
+button{border:0;border-radius:999px;padding:12px 20px;background:linear-gradient(135deg,#ff8fba,#e86ba7);color:white;font:800 1rem Nunito,sans-serif;box-shadow:0 5px 0 #c9578d;cursor:pointer;transition:transform .15s,filter .15s;min-width:94px}
+button:hover{filter:brightness(1.04);transform:translateY(-2px)}button:active{transform:translateY(2px);box-shadow:0 2px 0 #c9578d}
+button.alt{background:linear-gradient(135deg,#b6a0f1,#9075d4);box-shadow:0 5px 0 #7962b6}
+.flowers{font-size:2rem;letter-spacing:5px;margin-top:28px;animation:sway 2.5s ease-in-out infinite alternate}
+@keyframes sway{to{transform:rotate(3deg) scale(1.04)}}
+.video-placeholder{width:100%;min-height:150px;border:2px dashed #e7a3c5;border-radius:20px;background:linear-gradient(135deg,#fff1f7,#f7efff);display:grid;place-items:center;margin:20px 0;padding:18px}
+.video-placeholder strong{display:block;font-size:1.2rem}.hint{font-size:.85rem;opacity:.8}
+.cake-wrap{margin:15px auto 20px;width:245px;max-width:100%;position:relative;height:225px}
+.candles{display:flex;justify-content:center;gap:17px;height:63px;align-items:flex-start;position:relative;z-index:2}
+.candle{height:52px;width:10px;border-radius:4px 4px 1px 1px;background:repeating-linear-gradient(135deg,#fff 0 5px,#ff82b2 5px 10px);position:relative}
+.flame{position:absolute;top:-17px;left:-2px;width:14px;height:18px;background:radial-gradient(ellipse at 50% 65%,#fff7a0 0 25%,#ffb52f 45%,#ff6b4b 70%);border-radius:55% 45% 55% 45%;animation:flicker .18s infinite alternate;transform-origin:bottom}
+.candle.out .flame{display:none}
+@keyframes flicker{to{transform:rotate(7deg) scale(.88)}}
+.icing{height:32px;background:#ffd2e4;border-radius:50% 50% 12px 12px;border-bottom:6px solid #f69cc3;position:relative;z-index:1}
+.cake{height:85px;background:linear-gradient(90deg,#8d4c39,#b96c4c 30%,#7d3e31 65%,#a95b43);border-radius:12px 12px 18px 18px;display:grid;place-items:center;color:#fff2cf;font-family:Pacifico,cursive;font-size:2.2rem;text-shadow:0 2px #55291f;box-shadow:0 12px 0 #6d352a}
+.plate{height:13px;width:270px;max-width:110%;background:#fff;border-radius:50%;margin:10px auto 0;box-shadow:0 4px 10px #a86a7b33}
+textarea{width:100%;min-height:180px;padding:14px;border:2px solid #f1b2d0;border-radius:18px;background:#fffafd;font:1rem Nunito,sans-serif;color:var(--ink);resize:vertical;outline-color:var(--pink)}
+.note{background:#fff4f9;border-left:4px solid #f49bc2;padding:12px 14px;border-radius:12px;text-align:left;line-height:1.7;margin:16px 0}
+.hidden{display:none!important}.status{min-height:24px;font-size:.9rem;margin-top:8px;color:#9d4475}
+footer{font-size:.78rem;opacity:.65;margin-top:22px}
+@media(max-width:380px){.card{padding:24px 16px;min-height:560px}.btns{gap:9px}button{padding:11px 15px;min-width:84px}}
 </style>
 </head>
-
 <body>
-<main class="page">
-
-  <div class="fall-layer" id="fallLayer"></div>
-
-  <div class="content">
-
-    <div class="page-label">💗 page 1</div>
-
-    <section class="card greeting">
-      <div>
-        <h1>Hey prettiest Girl,<br>SUMU 🎀👋</h1>
-        <p>♡ A little surprise made for you ♡</p>
-      </div>
-    </section>
-
-    <section class="card question">
-      <h2>Are you crazy ?? 💕</h2>
-    </section>
-
-    <section class="buttons">
-      <button class="choice" onclick="answer('yes')">Yes 💗</button>
-      <button class="choice" onclick="answer('no')">No 💜</button>
-    </section>
-
-    <section class="result" id="result"></section>
-
-    <section class="flower-section">
-      <h2>Flower<br>animation 🌷</h2>
-      <p>A tiny garden full of love ✨</p>
-      <div class="garden" id="garden">
-        <div class="ground"></div>
-      </div>
-    </section>
-
-    <footer class="footer">MADE WITH 💗 FOR SUMU</footer>
-
-  </div>
+<div class="floaties" aria-hidden="true"><span>💗</span><span>🌸</span><span>💕</span><span>✨</span><span>💖</span></div>
+<main class="card">
+<section class="page active" id="p1">
+<h1 class="script">Hey prettiest Girl,<br>SUMU 🎀</h1><p class="question">Are You Crazy??? 😭💗</p>
+<div class="btns"><button onclick="go(2)">Yes 💕</button><button class="alt" onclick="go(2)">Yes 🌷</button></div>
+<div class="flowers" aria-label="Flowers">🌷 🌼 🌸 🌺 🌷</div>
+</section>
+<section class="page" id="p2">
+<h1 class="script">WOW!!!!</h1><p class="subtitle">How beautiful girl with pretty eyes 👀🎀</p>
+<div class="video-placeholder"><div><strong>👀 Eyes Intro</strong><p class="small">Your video goes here</p><p class="hint">Optional: add a video file named <b>eyes-intro.mp4</b> beside index.html.</p></div></div>
+<p class="question">Are you ready for nxt page??</p><div class="btns"><button onclick="go(3)">Yes 💗</button><button class="alt" onclick="go(3)">Yes 🫶</button></div>
+</section>
+<section class="page" id="p3">
+<h1 class="script">Happiest Birthday<br>to SUMU 🎂</h1>
+<p class="subtitle">Make a wish, birthday girl! ✨</p>
+<div class="cake-wrap"><div class="candles" id="candles"><div class="candle"><i class="flame"></i></div><div class="candle"><i class="flame"></i></div><div class="candle"><i class="flame"></i></div><div class="candle"><i class="flame"></i></div><div class="candle"><i class="flame"></i></div></div><div class="icing"></div><div class="cake">19</div><div class="plate"></div></div>
+<p class="small">🎤 Blow into your phone's microphone to blow out the candles!</p><div class="btns"><button onclick="startMic()">🎤 Start microphone</button><button class="alt" onclick="blowCandles()">Blow out candles</button></div>
+<p class="status" id="micStatus">Microphone permission is optional; you can use the button if it doesn't work.</p>
+<div class="btns"><button onclick="go(4)">Nxt page →</button></div>
+</section>
+<section class="page" id="p4">
+<h1>Before you continue…</h1><div class="note">Nxt page e onek gula dhamaka ache 😭 But kotha hochhe, tumi shudhu ekbar-e questions gula answer dite parba. Kono prosner answer ekbar diye felle ota ar repeat hobe na 🔁 So be careful…</div>
+<p class="question">Do you think that Sabbir still likes you?</p><div class="btns"><button onclick="go(10)">Yes</button><button class="alt" onclick="go(5)">No</button></div>
+</section>
+<section class="page" id="p5">
+<h1 class="script">OKEYYYYYY.... 💗</h1><p class="question">What kind of friend is Sabbir to you?</p>
+<div class="btns"><button onclick="go(6)">Just friend</button><button class="alt" onclick="go(7)">Best friend</button><button onclick="go(8)">Just known</button></div>
+</section>
+<section class="page" id="p6">
+<h1>OKEYYYYY Good Girl 🌸</h1><p class="subtitle">I have a little msg for you…</p><p class="question">Do you want to read it?</p><div class="btns"><button onclick="go(9)">Yes 💗</button><button class="alt" onclick="go(9)">Yes 🎀</button></div>
+</section>
+<section class="page" id="p7">
+<h1>Are you serious??? 😱</h1><h2>OKEYYYYY Good Girl 🌸</h2><p class="subtitle">I have a little msg for you…</p><p class="question">Do you want to read it?</p><div class="btns"><button onclick="go(9)">Yes 💗</button><button class="alt" onclick="go(9)">Yes 🎀</button></div>
+</section>
+<section class="page" id="p8">
+<h1 class="script">Whattt !!!! 😭</h1><p class="question">Do you think that I'm just known to you?</p><p class="small">Jai hok, I have a little msg for you…</p><p class="question">Do you want to read it?</p><div class="btns"><button onclick="go(9)">Yes 💗</button><button class="alt" onclick="go(9)">Yes 🎀</button></div>
+</section>
+<section class="page" id="p9">
+<h1 class="script">A little msg for you 💌</h1>
+<div class="note">Tumi janle obak hobe je ami first time karo birthday-te etto koshto kore ekta wish banaitachhi, so maybe it's a little special… 🐒<br><br>Jaihok, bolte chaile toh onek kichui bola jay. Onek kotha bolar iccha ache, but onno konodin… 🙂<br><br>You know? You are such a wonderful singer 😭❤️ I can't explain it in words. Asolei tomar voice-ta onek shundor, trust me or not 🤌😚<br><br>Ar shobcheye funny hochhe je majhe moddhe reels-e random kono meyer gaan dekhleo tomar kotha mone pore jay 😭🥹 Emniki tomar kotha bhebei oder reels-e like diye dei 💀🤦‍♂️<br><br>Anyway, happy birthday once again ❤️ Always keep singing, ar emnei shundor theko, shobshomoy hashikhushi theko, gaan geyo. Majhe moddhe mon chaile amareo dui-ekta dio 😭🙏 Tomar jonno mon theke onek onek shubhokamona roilo 🫶🏻</div>
+<p class="question">Do you want to say something to Sabbir?</p><div class="btns"><button onclick="go(14)">Yes</button><button class="alt" onclick="go(15)">No</button></div>
+</section>
+<section class="page" id="p10">
+<h1>Reallyyyy!! 😳</h1><p class="question">Do you really think that I still like you?</p><div class="btns"><button onclick="document.getElementById('confess').classList.remove('hidden');document.getElementById('confess').scrollIntoView({behavior:'smooth',block:'center'})">Yes</button><button class="alt" onclick="go(12)">No</button></div>
+<div id="confess" class="hidden"><p class="question">Should I confess to you?</p><div class="btns"><button onclick="go(11)">Yes 💗</button><button class="alt" onclick="go(11)">No 🙈</button></div></div>
+</section>
+<section class="page" id="p11">
+<h1>Reallyyy!!!</h1><p class="subtitle">Okeyy pretty girl 🤗<br>Get ready…</p><p class="question">Will you be MINE!!!!?</p><div class="btns"><button onclick="go(16)">Yes 💗</button><button class="alt" onclick="go(13)">No</button></div><p class="hint">Your answer matters—choose what feels right for you.</p>
+</section>
+<section class="page" id="p12">
+<h1>Okeyyy, good girl 🌸</h1><p class="subtitle">I have a little msg for you…</p><p class="question">Do you want to read it?</p><div class="btns"><button onclick="go(9)">Yes</button><button class="alt" onclick="go(9)">Yes</button></div>
+</section>
+<section class="page" id="p13">
+<h1 class="script">Last msg 💌</h1><p class="question">Do you want to say something to Sabbir?</p><div class="btns"><button onclick="go(14)">Yes</button><button class="alt" onclick="go(15)">No</button></div>
+</section>
+<section class="page" id="p14">
+<h1>Put down it here ✍️</h1><p class="small">Write anything you'd like Sabbir to know. This text stays on this page and is not automatically sent anywhere.</p>
+<textarea id="reply" placeholder="Your message to Sabbir…"></textarea><div class="btns"><button onclick="saveReply()">Done 💗</button></div><p class="status" id="replyStatus"></p>
+</section>
+<section class="page" id="p15">
+<h1 class="script">Okey good girl 💗</h1><p class="subtitle">Take care of yourself.<br>Again, happy birthday to you! 🎂🌸</p><p class="question">Do you want to block Sabbir?</p><p class="small">This website can't block anyone. Choose either option to finish the surprise.</p><div class="btns"><button onclick="finish()">Yes</button><button class="alt" onclick="finish()">Yes</button></div>
+</section>
+<section class="page" id="p16">
+<h1>I don't expect it! 🥹</h1><p class="subtitle">I will talk to you later…</p><div class="note"><p class="question">But one msg to you…</p><p>Do you want to read it?</p></div><div class="btns"><button onclick="go(9)">Yes 💗</button><button class="alt" onclick="go(9)">Yes 🎀</button></div>
+</section>
+<section class="page" id="done">
+<h1 class="script">Thank you, SUMU 🌷</h1><p class="subtitle">I hope your birthday is full of smiles, music, and lovely moments. 💗</p><div class="flowers">🌸 💖 🌷</div><button onclick="go(1)">Start again ↻</button>
+</section>
+<footer>Made with 💗 for SUMU · Birthday surprise</footer>
 </main>
-
 <script>
-/* Falling hearts and flowers */
-const fallLayer = document.getElementById("fallLayer");
-
-const fallingEmojis = [
-  "💗", "💕", "💖", "💘", "💝",
-  "🌸", "🌷", "🌼", "🌺", "🩷",
-  "💞", "✨", "🪷", "🌹"
-];
-
-for (let i = 0; i < 28; i++) {
-  const item = document.createElement("span");
-  item.className = "falling";
-  item.textContent =
-    fallingEmojis[Math.floor(Math.random() * fallingEmojis.length)];
-
-  item.style.setProperty("--x", Math.random() * 100 + "%");
-  item.style.setProperty("--size", (17 + Math.random() * 16) + "px");
-  item.style.setProperty("--duration", (6 + Math.random() * 7) + "s");
-  item.style.setProperty("--delay", (-Math.random() * 12) + "s");
-  item.style.setProperty("--drift", (-45 + Math.random() * 90) + "px");
-
-  fallLayer.appendChild(item);
+function go(n){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ const target=document.getElementById('p'+n);
+ if(target) target.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
 }
-
-/* Create the flower garden */
-const garden = document.getElementById("garden");
-
-const flowerColors = [
-  "#ff79b0",
-  "#ffc0d9",
-  "#d4a1ff",
-  "#ffcb69",
-  "#ff91a8",
-  "#a8c7ff",
-  "#fff0a8",
-  "#f5a5e8"
-];
-
-for (let i = 0; i < 15; i++) {
-  const flower = document.createElement("div");
-  flower.className = "flower";
-
-  const x = 3 + (i / 14) * 94;
-  const height = 75 + Math.random() * 125;
-  const width = 18 + Math.random() * 12;
-  const delay = Math.random() * 2.2;
-  const color =
-    flowerColors[Math.floor(Math.random() * flowerColors.length)];
-
-  flower.style.setProperty("--x", x + "%");
-  flower.style.setProperty("--h", height + "px");
-  flower.style.setProperty("--w", width + "px");
-  flower.style.setProperty("--delay", delay + "s");
-
-  const stem = document.createElement("div");
-  stem.className = "stem";
-  flower.appendChild(stem);
-
-  const leaf1 = document.createElement("div");
-  leaf1.className = "leaf left";
-  flower.appendChild(leaf1);
-
-  const leaf2 = document.createElement("div");
-  leaf2.className = "leaf right";
-  flower.appendChild(leaf2);
-
-  const bloom = document.createElement("div");
-  bloom.className = "bloom";
-
-  for (let p = 0; p < 8; p++) {
-    const petal = document.createElement("div");
-    petal.className = "petal";
-    petal.style.setProperty("--angle", (p * 45) + "deg");
-    petal.style.setProperty("--color", color);
-    bloom.appendChild(petal);
-  }
-
-  const center = document.createElement("div");
-  center.className = "flower-center";
-  bloom.appendChild(center);
-
-  flower.appendChild(bloom);
-  garden.appendChild(flower);
+let audioContext=null, analyser=null, micStream=null, micFrame=null;
+async function startMic(){
+ const status=document.getElementById('micStatus');
+ try{
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia) throw new Error('Microphone is not supported in this browser.');
+  micStream=await navigator.mediaDevices.getUserMedia({audio:true});
+  audioContext=new (window.AudioContext||window.webkitAudioContext)();
+  const source=audioContext.createMediaStreamSource(micStream);analyser=audioContext.createAnalyser();analyser.fftSize=512;source.connect(analyser);
+  const data=new Uint8Array(analyser.fftSize);let loudFrames=0;
+  status.textContent='Mic is on! Blow gently toward your phone microphone. 🎤';
+  const listen=()=>{if(!analyser)return;analyser.getByteTimeDomainData(data);let sum=0;for(let i=0;i<data.length;i++){const x=(data[i]-128)/128;sum+=x*x}const rms=Math.sqrt(sum/data.length);loudFrames=rms>.12?loudFrames+1:Math.max(0,loudFrames-1);if(loudFrames>7){blowCandles();return}micFrame=requestAnimationFrame(listen)};
+  listen();
+ }catch(e){status.textContent='Mic permission unavailable. Tap “Blow out candles” instead. ('+e.message+')'}
 }
-
-/* Yes / No interaction */
-function answer(choice) {
-  const result = document.getElementById("result");
-
-  if (choice === "yes") {
-    result.innerHTML =
-      "Hehe, I knew it! 😂💗<br>SUMU is officially crazy! 🎀🌸";
-  } else {
-    result.innerHTML =
-      "Achhaaa, tai naki? 👀💜<br>Amar kintu shondeho ache! 😂🌷";
-  }
-
-  result.style.display = "block";
-
-  result.scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-  });
-}
+function stopMic(){if(micFrame)cancelAnimationFrame(micFrame);micFrame=null;if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null}if(audioContext){audioContext.close();audioContext=null}analyser=null}
+function blowCandles(){document.querySelectorAll('#candles .candle').forEach(c=>c.classList.add('out'));document.getElementById('micStatus').textContent='Wish made! Candles blown out! 🎂💗';stopMic()}
+function saveReply(){const val=document.getElementById('reply').value.trim();document.getElementById('replyStatus').textContent=val?'Message written! It has not been sent; copy it if you want to keep it. 💗':'You can leave this blank if you prefer.';setTimeout(()=>go(15),900)}
+function finish(){stopMic();document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('done').classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
 </script>
 </body>
 </html>
