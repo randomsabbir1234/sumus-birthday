@@ -4,223 +4,247 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>👀🙈</title>
+<title>My Love 🌸</title>
 
 <style>
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  background: #100b09;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Arial, sans-serif;
-}
-
-.video {
-  position: relative;
-  width: 100%;
-  max-width: 900px;
-  aspect-ratio: 16 / 9;
+  background: #020305;
   overflow: hidden;
-  background: #241711;
-  color: white;
+  font-family: Georgia, serif;
 }
 
-.photo {
+.intro {
+  height: 100vh;
+  height: 100dvh;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  position: absolute;
-  inset: 0;
-  animation: zoom 7s ease-in-out infinite alternate;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 75%,
+    #191323 0%, #07070d 38%, #020305 75%);
 }
 
-.shade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,.55),
-    transparent 45%,
-    rgba(0,0,0,.12)
-  );
-}
-
-.caption {
-  position: absolute;
-  top: 8%;
-  left: 5%;
-  width: 90%;
-  text-align: center;
-  color: #fff0df;
-  font-family: "Trebuchet MS", cursive;
-  font-size: clamp(17px, 3.5vw, 34px);
-  font-weight: 500;
-  line-height: 1.5;
-  text-shadow: 0 2px 8px #3b2118;
-  opacity: 0;
-  transform: translateY(15px);
-  animation: appear 1.4s ease forwards;
-}
-
-.hearts {
-  display: block;
-  margin-top: 5px;
-  font-size: .8em;
-  letter-spacing: 10px;
-}
-
-.controls {
+.ground {
   position: absolute;
   bottom: 0;
+  width: 100%;
+  height: 12%;
+  background: linear-gradient(transparent, #07120b);
+}
+
+.flowers {
+  position: absolute;
+  bottom: 7%;
   left: 0;
   width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 18px;
-  background: linear-gradient(transparent, rgba(0,0,0,.4));
+  height: 70%;
 }
 
-button {
-  color: white;
-  background: transparent;
-  border: 0;
-  font-size: 22px;
-  cursor: pointer;
+.flower {
+  position: absolute;
+  bottom: 0;
+  width: var(--w);
+  height: var(--h);
+  transform-origin: bottom center;
+  transform: scaleY(0);
+  animation: grow 1.7s cubic-bezier(.2,.8,.3,1) forwards;
+  animation-delay: var(--delay);
 }
 
-.track {
-  flex: 1;
-  height: 4px;
-  border-radius: 10px;
-  background: #ffffff66;
-  overflow: hidden;
+.stem {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  height: 78%;
+  transform: translateX(-50%);
+  background: linear-gradient(to top, #142a16, #43843b);
+  border-radius: 100%;
 }
 
-.progress {
-  height: 100%;
-  width: 0%;
-  background: white;
+.leaf {
+  position: absolute;
+  width: 15px;
+  height: 7px;
+  background: #39733b;
+  border-radius: 100% 0 100% 0;
 }
 
-.time {
-  font-size: 13px;
-  white-space: nowrap;
+.leaf.left {
+  left: 50%;
+  bottom: 28%;
+  transform: rotate(20deg);
+}
+
+.leaf.right {
+  right: 50%;
+  bottom: 43%;
+  transform: rotate(200deg);
+}
+
+.bloom {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  transform: translate(-50%, -12%);
+  animation: sway 3s ease-in-out infinite alternate;
+  animation-delay: var(--delay);
+}
+
+.petal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 11px;
+  height: 17px;
+  margin-left: -5.5px;
+  margin-top: -15px;
+  border-radius: 50% 50% 40% 40%;
+  background: var(--color);
+  transform-origin: 50% 15px;
+  transform: rotate(var(--angle));
+  box-shadow: 0 0 7px color-mix(in srgb, var(--color), transparent 35%);
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  background: #f9d875;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px #ffce69;
+}
+
+.message {
+  position: absolute;
+  top: 66%;
+  left: 50%;
+  width: 90%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  color: #fff2d9;
+  font-size: clamp(25px, 7vw, 42px);
+  font-style: italic;
+  letter-spacing: 3px;
+  opacity: 0;
+  animation: appear 2s ease forwards;
+  animation-delay: 3.5s;
+  text-shadow: 0 0 10px #ffc5df, 0 0 30px #ff6ab6;
+  z-index: 5;
+}
+
+.glow {
+  position: absolute;
+  left: 50%;
+  top: 65%;
+  width: 180px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  background: #e89aca;
+  filter: blur(65px);
+  opacity: 0;
+  animation: glowIn 2s ease forwards;
+  animation-delay: 3s;
+}
+
+@keyframes grow {
+  to { transform: scaleY(1); }
+}
+
+@keyframes sway {
+  from { rotate: -5deg; }
+  to { rotate: 5deg; }
 }
 
 @keyframes appear {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; letter-spacing: 12px; }
+  100% { opacity: 1; letter-spacing: 3px; }
 }
 
-@keyframes zoom {
-  from { transform: scale(1); }
-  to { transform: scale(1.12); }
+@keyframes glowIn {
+  to { opacity: .25; }
 }
 
-.video.paused .photo {
-  animation-play-state: paused;
-}
-
-.video.paused .caption {
-  animation-play-state: paused;
-}
-
-@media (max-width: 500px) {
-  .video {
-    aspect-ratio: 4 / 3;
-  }
-
-  .caption {
-    top: 7%;
-    font-size: 19px;
-  }
-
-  .controls {
-    padding: 8px;
-    gap: 7px;
-  }
-}
 </style>
 </head>
 
 <body>
-
-<div class="video" id="video">
-
-  <!-- নিজের ছবির নাম image.jpg রাখবি -->
-  <img src="IMG_20261022_173957.jpg" class="photo" alt="Beautiful eyes">
-  <div class="shade"></div>
-
-  <div class="caption">
-    Emne thakaiyo na manush<br>
-    heart attack korbe 👀🙈
-    <span class="hearts">♡ ─ ♡ ─ ♡</span>
-  </div>
-
-  <div class="controls">
-    <button id="toggle" aria-label="Pause animation">Ⅱ</button>
-
-    <div class="track">
-      <div class="progress" id="progress"></div>
-    </div>
-
-    <span class="time" id="time">0:00 / 0:07</span>
-  </div>
-
+<div class="intro">
+  <div class="glow"></div>
+  <div class="flowers" id="flowers"></div>
+  <div class="ground"></div>
+  <div class="message">My Love ♡</div>
 </div>
 
 <script>
-const video = document.getElementById("video");
-const toggle = document.getElementById("toggle");
-const progress = document.getElementById("progress");
-const time = document.getElementById("time");
+const garden = document.getElementById("flowers");
 
-const duration = 7;
-let start = performance.now();
-let elapsed = 0;
-let paused = false;
-let frame;
+const colors = [
+  "#ff8eb7",
+  "#ffca62",
+  "#f5a5e8",
+  "#fff0a8",
+  "#e98ba1",
+  "#a9a2ff",
+  "#ffb7d5"
+];
 
-function update(now) {
-  if (paused) return;
+for (let i = 0; i < 48; i++) {
+  const flower = document.createElement("div");
+  flower.className = "flower";
 
-  elapsed = ((now - start) / 1000) % duration;
+  const x = (i / 47) * 100;
+  const height = 65 + Math.random() * 180;
+  const width = 20 + Math.random() * 20;
+  const delay = 0.2 + Math.random() * 2.3;
+  const color = colors[Math.floor(Math.random() * colors.length)];
 
-  progress.style.width = (elapsed / duration * 100) + "%";
+  flower.style.left = x + "%";
+  flower.style.setProperty("--h", height + "px");
+  flower.style.setProperty("--w", width + "px");
+  flower.style.setProperty("--delay", delay + "s");
 
-  const seconds = Math.floor(elapsed);
-  time.textContent =
-    `0:${String(seconds).padStart(2, "0")} / 0:07`;
+  const stem = document.createElement("div");
+  stem.className = "stem";
+  flower.appendChild(stem);
 
-  frame = requestAnimationFrame(update);
-}
+  const leaf1 = document.createElement("div");
+  leaf1.className = "leaf left";
+  flower.appendChild(leaf1);
 
-frame = requestAnimationFrame(update);
+  const leaf2 = document.createElement("div");
+  leaf2.className = "leaf right";
+  flower.appendChild(leaf2);
 
-toggle.addEventListener("click", () => {
-  paused = !paused;
-  video.classList.toggle("paused", paused);
+  const bloom = document.createElement("div");
+  bloom.className = "bloom";
 
-  if (paused) {
-    cancelAnimationFrame(frame);
-    toggle.textContent = "▶";
-  } else {
-    start = performance.now() - elapsed * 1000;
-    toggle.textContent = "Ⅱ";
-    frame = requestAnimationFrame(update);
+  for (let p = 0; p < 8; p++) {
+    const petal = document.createElement("div");
+    petal.className = "petal";
+    petal.style.setProperty("--angle", (p * 45) + "deg");
+    petal.style.setProperty("--color", color);
+    bloom.appendChild(petal);
   }
-});
-</script>
 
+  const center = document.createElement("div");
+  center.className = "center";
+  bloom.appendChild(center);
+
+  flower.appendChild(bloom);
+  garden.appendChild(flower);
+}
+</script>
 </body>
 </html>
