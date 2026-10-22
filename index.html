@@ -305,26 +305,4 @@ for (let i = 0; i < 70; i++) {
 
   const center = document.createElement("div");
   center.className = "center";
-  bloom.appendChild(center);
-
-  flower.appendChild(bloom);
-  garden.appendChild(flower);
-}
-
-/* Show each character after all flowers finish growing */
-const title = Array.from("Hey pretty SUMU 🎀");
-
-title.forEach((char, index) => {
-  const span = document.createElement("span");
-
-  span.textContent = char === " " ? "\u00A0" : char;
-
-  const delay = maxDelay + 1.7 + 0.4 + index * 0.14;
-
-  span.style.setProperty("--delay", delay + "s");
-
-  message.appendChild(span);
-});
-</script>
-</body>
-</html>
+  bloom.
