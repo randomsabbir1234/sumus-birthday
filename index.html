@@ -261,7 +261,7 @@ const colors = [
 let maxDelay = 0;
 
 /* Create 48 flowers */
-for (let i = 0; i < 48; i++) {
+for (let i = 0; i < 70; i++) {
   const flower = document.createElement("div");
   flower.className = "flower";
 
@@ -319,7 +319,7 @@ title.forEach((char, index) => {
 
   span.textContent = char === " " ? "\u00A0" : char;
 
-  const delay = maxDelay + 1.7 + 0.7 + index * 0.14;
+  const delay = maxDelay + 1.7 + 0.4 + index * 0.14;
 
   span.style.setProperty("--delay", delay + "s");
 
