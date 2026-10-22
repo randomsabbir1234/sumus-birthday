@@ -3,411 +3,225 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A Little Birthday Surprise for SUMU 🎀</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>👀🙈</title>
+
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;min-height:100vh;display:grid;place-items:center;
- background:linear-gradient(135deg,#ffe5ef,#f5e8ff,#fff3dc);
- font-family:Arial,sans-serif;color:#70445c;text-align:center;
- padding:20px;overflow-x:hidden
-}
-.card{
- background:#ffffffdc;padding:30px 22px;border-radius:28px;
- max-width:420px;width:100%;box-shadow:0 12px 40px #bc82a522;
- animation:pop .7s ease
-}
-@keyframes pop{from{opacity:0;transform:translateY(15px)}
-to{opacity:1;transform:translateY(0)}}
-.cat{font-size:78px;animation:bounce 1.6s infinite}
-@keyframes bounce{50%{transform:translateY(-9px)}}
-h1{color:#d65c91;font-size:28px}
-p{line-height:1.7}
-button{
- border:0;border-radius:30px;padding:13px 22px;margin:7px;
- font-size:16px;cursor:pointer;background:#ed8bb3;color:white;
- transition:transform .2s
-}
-button:hover{transform:scale(1.06)}
-.secondary{background:#e7d9ef;color:#70445c}
-.hidden{display:none}
-#message{font-weight:bold;color:#d65c91;margin-top:18px}
-.heart{position:fixed;top:-30px;animation:fall 6s linear infinite;
- pointer-events:none;z-index:-1}
-@keyframes fall{to{transform:translateY(110vh) rotate(300deg)}}
- 
-.crying-cat {
-  display: inline-block;
-  font-size: 75px;
-  animation: sob 0.25s infinite alternate;
-}
-@keyframes sob {
-  from { transform: rotate(-12deg) scale(1); }
-  to { transform: rotate(12deg) scale(1.12); }
-}
-.crying-text {
-  animation: shake 0.15s infinite alternate;
-}
-@keyframes shake {
-  from { transform: translateX(-3px); }
-  to { transform: translateX(3px); }
-}
-/* Cute crying cartoon animation */
-.cry-scene {
-  margin: 16px auto;
-  text-align: center;
-  animation: sadBounce 0.7s infinite alternate;
+* {
+  box-sizing: border-box;
 }
 
-.cry-character {
+body {
+  margin: 0;
+  background: #100b09;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+}
+
+.video {
   position: relative;
-  display: inline-block;
-  font-size: 100px;
-  line-height: 1.4;
-  animation: sadShake 0.22s infinite alternate;
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #241711;
+  color: white;
 }
 
-.cry-character .arm {
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   position: absolute;
-  top: 42px;
-  font-size: 38px;
-  animation: armWave 0.35s infinite alternate;
+  inset: 0;
+  animation: zoom 7s ease-in-out infinite alternate;
 }
 
-.cry-character .left {
-  left: -24px;
-  transform-origin: top right;
-}
-
-.cry-character .right {
-  right: -24px;
-  transform-origin: top left;
-  animation-delay: 0.2s;
-}
-
-.cry-tears {
+.shade {
   position: absolute;
-  top: 45px;
-  left: 50%;
-  font-size: 28px;
-  animation: tearsFall 0.45s infinite;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.55),
+    transparent 45%,
+    rgba(0,0,0,.12)
+  );
 }
 
-.cry-caption {
-  font-size: 19px;
-  font-weight: bold;
-  color: #e75480;
-  margin-top: 8px;
-}
-
-@keyframes sadBounce {
-  from { transform: translateY(0); }
-  to { transform: translateY(-9px); }
-}
-
-@keyframes sadShake {
-  from { rotate: -5deg; }
-  to { rotate: 5deg; }
-}
-
-@keyframes armWave {
-  from { rotate: -25deg; }
-  to { rotate: 25deg; }
-}
-
-@keyframes tearsFall {
-  0% { transform: translate(-50%, 0); opacity: 1; }
-  100% { transform: translate(-50%, 25px); opacity: 0.2; }
-}
- 
-/* Hand-drawn cartoon character */
-.cartoon-scene {
+.caption {
+  position: absolute;
+  top: 8%;
+  left: 5%;
+  width: 90%;
   text-align: center;
-  margin: 18px auto;
+  color: #fff0df;
+  font-family: "Trebuchet MS", cursive;
+  font-size: clamp(17px, 3.5vw, 34px);
+  font-weight: 500;
+  line-height: 1.5;
+  text-shadow: 0 2px 8px #3b2118;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: appear 1.4s ease forwards;
 }
 
-.cartoon-svg {
-  width: 220px;
-  max-width: 85%;
-  overflow: visible;
+.hearts {
+  display: block;
+  margin-top: 5px;
+  font-size: .8em;
+  letter-spacing: 10px;
 }
 
-.cartoon-head {
-  transform-box: fill-box;
-  transform-origin: center bottom;
-  animation: headSob .3s infinite alternate;
+.controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: linear-gradient(transparent, rgba(0,0,0,.4));
 }
 
-.cartoon-arm-left {
-  transform-box: fill-box;
-  transform-origin: top right;
-  animation: leftCry .35s infinite alternate;
+button {
+  color: white;
+  background: transparent;
+  border: 0;
+  font-size: 22px;
+  cursor: pointer;
 }
 
-.cartoon-arm-right {
-  transform-box: fill-box;
-  transform-origin: top left;
-  animation: rightCry .35s infinite alternate;
+.track {
+  flex: 1;
+  height: 4px;
+  border-radius: 10px;
+  background: #ffffff66;
+  overflow: hidden;
 }
 
-.cartoon-body {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: bodySob .3s infinite alternate;
+.progress {
+  height: 100%;
+  width: 0%;
+  background: white;
 }
 
-.cartoon-tear {
-  animation: tearDrop .65s infinite;
+.time {
+  font-size: 13px;
+  white-space: nowrap;
 }
 
-.cartoon-tear.two {
-  animation-delay: .3s;
+@keyframes appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@keyframes headSob {
-  from { transform: rotate(-5deg) translateY(0); }
-  to { transform: rotate(5deg) translateY(4px); }
+@keyframes zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.12); }
 }
 
-@keyframes leftCry {
-  from { transform: rotate(-25deg); }
-  to { transform: rotate(20deg); }
+.video.paused .photo {
+  animation-play-state: paused;
 }
 
-@keyframes rightCry {
-  from { transform: rotate(25deg); }
-  to { transform: rotate(-20deg); }
+.video.paused .caption {
+  animation-play-state: paused;
 }
 
-@keyframes bodySob {
-  from { transform: translateY(0); }
-  to { transform: translateY(4px); }
+@media (max-width: 500px) {
+  .video {
+    aspect-ratio: 4 / 3;
+  }
+
+  .caption {
+    top: 7%;
+    font-size: 19px;
+  }
+
+  .controls {
+    padding: 8px;
+    gap: 7px;
+  }
 }
-
-@keyframes tearDrop {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(24px); opacity: .15; }
-}
- 
- 
-/* 10 different crying kitty animations */
-.cartoon-svg { transform-origin: center; }
-
-.mood-1 .cartoon-svg { animation: cry1 .35s infinite alternate; }
-.mood-2 .cartoon-svg { animation: cry2 .5s infinite alternate; }
-.mood-3 .cartoon-svg { animation: cry3 .4s infinite alternate; }
-.mood-4 .cartoon-svg { animation: cry4 .3s infinite alternate; }
-.mood-5 .cartoon-svg { animation: cry5 .6s infinite alternate; }
-.mood-6 .cartoon-svg { animation: cry6 .45s infinite alternate; }
-.mood-7 .cartoon-svg { animation: cry7 .5s infinite alternate; }
-.mood-8 .cartoon-svg { animation: cry8 .35s infinite alternate; }
-.mood-9 .cartoon-svg { animation: cry9 .4s infinite alternate; }
-.mood-10 .cartoon-svg { animation: cry10 .55s infinite alternate; }
-
-@keyframes cry1 { to { transform: translateY(-10px) rotate(5deg); } }
-@keyframes cry2 { to { transform: rotate(-12deg) scale(1.06); } }
-@keyframes cry3 { to { transform: translateY(8px) scale(.94); } }
-@keyframes cry4 { to { transform: translateX(8px) rotate(5deg); } }
-@keyframes cry5 { to { transform: scale(1.12) rotate(-5deg); } }
-@keyframes cry6 { to { transform: translate(-7px, -5px) rotate(8deg); } }
-@keyframes cry7 { to { transform: rotate(180deg); } }
-@keyframes cry8 { to { transform: translateY(-14px) rotate(-8deg); } }
-@keyframes cry9 { to { transform: scale(.88) translateY(8px); } }
-@keyframes cry10 { to { transform: translateX(-9px) rotate(-10deg) scale(1.04); } }
-   
 </style>
 </head>
+
 <body>
-<div class="card">
-  <section id="first">
-    <div class="cat">🐱🎀</div>
-    <h1>Hey, Birthday Girl,SUMU 🎂</h1>
-    <p>A tiny surprise has been made just for you. 💗</p>
-    <button onclick="openWish()">Open your surprise ✨</button>
-  </section>
 
-  <section id="second" class="hidden">
-    <div class="cat">🐱💗</div>
-    <h1>Happy Birthday! 🎉</h1>
-    <p>
-  tumi janle ovak hobe je ami first time karo birthday te
-  etto kostow kore ekta wish banaitachii, so maybe it's a
-  little special,, 🐒
-  <br><br>
-  jaihok, bolte chaile toh onek kichui bola jay, onek kotha
-  bolar iccha ache but onno konodin...🙂
-  <br><br>
-  you know? you are such a wonderful singer 😭❤️ I can't
-  explain it in words,,, asolei tumar voice ta onk sundor
-  trust me or not 🤌😚
-  <br><br>
-  r sobcheye funny hochhe j majhe moddhe reels e random
-  kono meyer gaan dekhleo tomar kotha mone pore jay,,,
-  😭🥹 emonki tomar kotha vebei oder reels e like diye dei 💀🤦‍♂️
-  <br><br>
-  anyway, happy birthday once again. ❤️ always keep singing,
-  ar emnei shundor theko,,,sobsmy hashikhushi theko,,,
-  gaan geyo,,, maje moddhe mon cahile amareu dui ekta dio😭🙏
-  tomar jonno mon theke onek onek shubhokamona roilo 🫶🏻
-</p>
-   
-    <button onclick="openTreat()">One last question... 👀</button>
-  </section>
+<div class="video" id="video">
 
-  <section id="third" class="hidden">
-    <div class="cat">🐱🍰</div>
-    <h1>Treat for this kitty? 🥹</h1>
-    <p>Will you give me a birthday treat? 🎀</p>
-    <button onclick="answerYes()">YES! 💗</button>
-    <button class="secondary" onclick="answerNo()">No 🙈</button>
-    <div id="message"></div>
-  </section>
+  <!-- নিজের ছবির নাম image.jpg রাখবি -->
+  <img src="image.jpg" class="photo" alt="Beautiful eyes">
+
+  <div class="shade"></div>
+
+  <div class="caption">
+    Emne thakaiyo na manush<br>
+    heart attack korbe 👀🙈
+    <span class="hearts">♡ ─ ♡ ─ ♡</span>
+  </div>
+
+  <div class="controls">
+    <button id="toggle" aria-label="Pause animation">Ⅱ</button>
+
+    <div class="track">
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <span class="time" id="time">0:00 / 0:07</span>
+  </div>
+
 </div>
 
 <script>
-function show(id){
-  document.querySelectorAll("section").forEach(s=>{
-    s.classList.add("hidden");
-  });
-  document.getElementById(id).classList.remove("hidden");
+const video = document.getElementById("video");
+const toggle = document.getElementById("toggle");
+const progress = document.getElementById("progress");
+const time = document.getElementById("time");
+
+const duration = 7;
+let start = performance.now();
+let elapsed = 0;
+let paused = false;
+let frame;
+
+function update(now) {
+  if (paused) return;
+
+  elapsed = ((now - start) / 1000) % duration;
+
+  progress.style.width = (elapsed / duration * 100) + "%";
+
+  const seconds = Math.floor(elapsed);
+  time.textContent =
+    `0:${String(seconds).padStart(2, "0")} / 0:07`;
+
+  frame = requestAnimationFrame(update);
 }
-function openWish(){show("second")}
-function openTreat(){show("third")}
 
-function answerYes(){
-  document.getElementById("message").innerHTML =
-    '<img src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyMnd5anhkbW4zMmt6ZHhwdTB2MnVkenN1NTFoZnBmeGhmdGRoOTd4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/j0wbpJI4ZOte5EM0b1/giphy.gif" ' +
-    'alt="Laughing GIF" style="width:220px;max-width:90%;border-radius:15px;">' +
-    '<div class="crying-text">' +
-    '😹💗 YAYYYY!<br>' +
-    'TREAT CONFIRMED! 🍰🎉' +
-    '</div>';
-}
- 
-let cryCount = 0;
+frame = requestAnimationFrame(update);
 
-function answerNo() {
-  const messages = [
-    "MEOWWW! TREAT DAO! 😭",
-    "PLEASEEE, EKTA TREAT! 🥹",
-    "AMI KANBOOO! 💔",
-    "NO TREAT?! NOOO! 😿",
-    "LAST TIME BOLCHI... TREAT DAO! 😭"
-  ];
+toggle.addEventListener("click", () => {
+  paused = !paused;
+  video.classList.toggle("paused", paused);
 
-  cryCount++;
-
-  document.getElementById("message").innerHTML = `
-    <div class="cartoon-scene">
-      <svg class="cartoon-svg" viewBox="0 0 220 240"
-           role="img" aria-label="Crying cartoon kitten">
-
-        <!-- Ears -->
-        <path d="M62 69 L55 24 L91 48 Z"
-              fill="#f7b8cf" stroke="#bd7798" stroke-width="3"/>
-        <path d="M129 48 L165 24 L158 69 Z"
-              fill="#f7b8cf" stroke="#bd7798" stroke-width="3"/>
-
-        <!-- Body -->
-        <g class="cartoon-body">
-          <ellipse cx="110" cy="170" rx="48" ry="52"
-                   fill="#fff0f5" stroke="#bd7798" stroke-width="3"/>
-          <ellipse cx="110" cy="178" rx="27" ry="31"
-                   fill="#ffdce9"/>
-
-          <!-- Feet -->
-          <ellipse cx="83" cy="211" rx="22" ry="12"
-                   fill="#fff0f5" stroke="#bd7798" stroke-width="3"/>
-          <ellipse cx="137" cy="211" rx="22" ry="12"
-                   fill="#fff0f5" stroke="#bd7798" stroke-width="3"/>
-        </g>
-
-        <!-- Left waving paw -->
-        <g class="cartoon-arm-left">
-          <path d="M78 143 Q43 153 47 116"
-                fill="none" stroke="#fff0f5"
-                stroke-width="20" stroke-linecap="round"/>
-          <path d="M78 143 Q43 153 47 116"
-                fill="none" stroke="#bd7798"
-                stroke-width="3" stroke-linecap="round"/>
-          <circle cx="47" cy="113" r="12"
-                  fill="#fff0f5" stroke="#bd7798" stroke-width="3"/>
-        </g>
-
-        <!-- Right waving paw -->
-        <g class="cartoon-arm-right">
-          <path d="M142 143 Q177 153 173 116"
-                fill="none" stroke="#fff0f5"
-                stroke-width="20" stroke-linecap="round"/>
-          <path d="M142 143 Q177 153 173 116"
-                fill="none" stroke="#bd7798"
-                stroke-width="3" stroke-linecap="round"/>
-          <circle cx="173" cy="113" r="12"
-                  fill="#fff0f5" stroke="#bd7798" stroke-width="3"/>
-        </g>
-
-        <!-- Head -->
-        <g class="cartoon-head">
-          <circle cx="110" cy="87" r="56"
-                  fill="#fff0f5" stroke="#bd7798" stroke-width="3"/>
-
-          <!-- Eyes -->
-          <path d="M77 80 Q85 91 93 80"
-                fill="none" stroke="#70445c" stroke-width="4"
-                stroke-linecap="round"/>
-          <path d="M127 80 Q135 91 143 80"
-                fill="none" stroke="#70445c" stroke-width="4"
-                stroke-linecap="round"/>
-
-          <!-- Nose and crying mouth -->
-          <path d="M105 94 Q110 89 115 94 Q110 101 105 94"
-                fill="#e889aa"/>
-          <path d="M103 107 Q110 99 117 107"
-                fill="none" stroke="#70445c" stroke-width="3"
-                stroke-linecap="round"/>
-
-          <!-- Blush -->
-          <ellipse cx="75" cy="98" rx="10" ry="5" fill="#f6a9c5"/>
-          <ellipse cx="145" cy="98" rx="10" ry="5" fill="#f6a9c5"/>
-
-          <!-- Tears -->
-          <g class="cartoon-tear">
-            <path d="M82 91 Q72 106 82 111 Q92 106 82 91"
-                  fill="#70cfff"/>
-          </g>
-          <g class="cartoon-tear two">
-            <path d="M138 91 Q128 106 138 111 Q148 106 138 91"
-                  fill="#70cfff"/>
-          </g>
-        </g>
-      </svg>
-
-      <div class="cry-caption">
-        ${messages[(cryCount - 1) % messages.length]}
-      </div>
-    </div>
-  `;
-}
- 
-
-
-
-
-
-
-   
- 
-
-for(let i=0;i<14;i++){
-  let h=document.createElement("div");
-  h.className="heart";
-  h.textContent=["💗","💕","✨","🌸"][i%4];
-  h.style.left=Math.random()*100+"%";
-  h.style.animationDelay=Math.random()*6+"s";
-  h.style.animationDuration=(4+Math.random()*5)+"s";
-  document.body.appendChild(h);
-}
+  if (paused) {
+    cancelAnimationFrame(frame);
+    toggle.textContent = "▶";
+  } else {
+    start = performance.now() - elapsed * 1000;
+    toggle.textContent = "Ⅱ";
+    frame = requestAnimationFrame(update);
+  }
+});
 </script>
+
 </body>
 </html>
