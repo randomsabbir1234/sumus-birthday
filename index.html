@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hey Pretty SUMU 🌸</title>
+<title>A Lovely Surprise for SUMU 🎀</title>
 
 <style>
 * {
@@ -15,99 +15,296 @@
 
 html, body {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #030208;
+  min-height: 100%;
+  font-family: "Trebuchet MS", sans-serif;
 }
 
-.intro {
+body {
+  overflow-x: hidden;
+  color: #8d3566;
+  background: #fff0f6;
+}
+
+.page {
   position: relative;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
   isolation: isolate;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 28px 16px 45px;
+  overflow: hidden;
   background:
-    radial-gradient(ellipse at 50% 70%,
-      #251329 0%,
-      #100a19 35%,
-      #030208 78%);
+    radial-gradient(ellipse at 10% 10%, #fff 0%, transparent 38%),
+    radial-gradient(ellipse at 90% 35%, #ffe0ef 0%, transparent 42%),
+    linear-gradient(160deg, #fff4f9, #ffd8eb 52%, #fff0f6);
 }
 
-/* Background light */
-.glow {
-  position: absolute;
-  width: 230px;
-  height: 180px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: #f05aaa;
-  filter: blur(80px);
-  opacity: .22;
-  animation: glowPulse 3s ease-in-out infinite alternate;
-  z-index: 1;
-  pointer-events: none;
+.content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 460px;
+  margin: auto;
 }
 
-/* Flowers layer */
-.flowers {
+.page-label {
+  margin: 0 0 12px 8px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #e75b9c;
+  text-shadow: 0 1px white;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 25px;
+  border: 3px solid #ff8fbc;
+  border-radius: 25px;
+  background: rgba(255,255,255,.66);
+  box-shadow:
+    0 7px 22px rgba(220, 89, 151, .13),
+    inset 0 0 18px rgba(255, 255, 255, .65);
+  backdrop-filter: blur(4px);
+}
+
+.greeting {
+  min-height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 25px 12px;
+  border-radius: 8px;
+}
+
+.greeting h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(25px, 7vw, 35px);
+  line-height: 1.45;
+  background: linear-gradient(
+    90deg,
+    #ff579a,
+    #b875e8,
+    #f3a34c,
+    #ff579a
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 5s linear infinite;
+}
+
+.greeting p {
+  margin-top: 10px;
+  color: #d45c97;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.question {
+  min-height: 235px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 14px;
+  text-align: center;
+  border: 5px solid #ff9dc5;
+  border-radius: 32px;
+}
+
+.question h2 {
+  font-size: clamp(28px, 7.5vw, 40px);
+  font-weight: 600;
+  line-height: 1.4;
+  color: #dc5c9a;
+  text-shadow: 0 2px white;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 0 65px;
+  gap: 12px;
+}
+
+.choice {
+  min-height: 105px;
+  border: 4px solid #ff91bd;
+  border-radius: 27px;
+  background: linear-gradient(145deg, #fff, #ffe2f0);
+  color: #db5798;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 5px 13px #f6b4d3;
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+
+.choice:nth-child(2) {
+  color: #9c69c8;
+  border-color: #d5a0ef;
+  background: linear-gradient(145deg, #fff, #f6e5ff);
+}
+
+.choice:active {
+  transform: scale(.94);
+}
+
+.result {
+  display: none;
+  margin: -35px 0 60px;
+  padding: 23px 12px;
+  text-align: center;
+  border: 2px solid #ed94c0;
+  border-radius: 22px;
+  background: rgba(255,255,255,.85);
+  color: #cb4e8c;
+  font-size: 20px;
+  line-height: 1.7;
+  animation: pop .4s ease;
+}
+
+/* Falling cute emojis */
+.fall-layer {
   position: absolute;
   inset: 0;
-  z-index: 3;
+  overflow: hidden;
+  z-index: 2;
   pointer-events: none;
 }
 
-/* Individual flowers */
-.flower {
+.falling {
+  position: absolute;
+  top: -55px;
+  left: var(--x);
+  font-size: var(--size);
+  opacity: 0;
+  animation: fall var(--duration) linear var(--delay) infinite;
+  filter: drop-shadow(0 2px 3px rgba(220, 70, 140, .15));
+  will-change: transform;
+}
+
+@keyframes fall {
+  0% {
+    transform: translate3d(0, -30px, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: .95;
+  }
+  85% {
+    opacity: .85;
+  }
+  100% {
+    transform: translate3d(var(--drift), 110vh, 0) rotate(330deg);
+    opacity: 0;
+  }
+}
+
+/* Real CSS flower garden */
+.flower-section {
+  position: relative;
+  text-align: center;
+  margin-top: 10px;
+  padding-top: 5px;
+}
+
+.flower-section h2 {
+  font-size: clamp(34px, 9vw, 47px);
+  font-weight: 600;
+  line-height: 1.3;
+  background: linear-gradient(
+    90deg,
+    #f5a04e,
+    #ed63a5,
+    #ad79e9,
+    #ef76ac
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.flower-section p {
+  margin-top: 9px;
+  font-size: 14px;
+  color: #c65c94;
+  letter-spacing: 1px;
+}
+
+.garden {
+  position: relative;
+  width: 100%;
+  height: 265px;
+  margin-top: 15px;
+  overflow: hidden;
+  border-radius: 25px;
+  border: 2px solid rgba(255, 146, 190, .5);
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.5),
+    rgba(255,203,227,.45)
+  );
+}
+
+.ground {
   position: absolute;
   bottom: 0;
+  width: 100%;
+  height: 24px;
+  background: linear-gradient(#b6d89b, #82bd81);
+  border-radius: 50% 50% 0 0;
+}
+
+.flower {
+  position: absolute;
+  bottom: 13px;
+  left: var(--x);
   width: var(--w);
   height: var(--h);
   transform-origin: bottom center;
   transform: scaleY(0);
-  animation: grow 1.7s cubic-bezier(.2,.8,.3,1) forwards;
+  animation: grow 1.6s cubic-bezier(.2,.8,.3,1) forwards;
   animation-delay: var(--delay);
 }
 
 .stem {
   position: absolute;
-  bottom: 0;
   left: 50%;
-  width: 2px;
+  bottom: 0;
   height: 78%;
+  width: 3px;
   transform: translateX(-50%);
-  background: linear-gradient(to top, #17391d, #68a94c);
+  background: linear-gradient(#6cba69, #438c58);
   border-radius: 50%;
 }
 
 .leaf {
   position: absolute;
-  width: 14px;
-  height: 7px;
-  background: #478348;
+  width: 17px;
+  height: 9px;
+  background: #72bb73;
   border-radius: 100% 0 100% 0;
 }
 
 .leaf.left {
+  bottom: 29%;
   left: 50%;
-  bottom: 28%;
   transform: rotate(20deg);
 }
 
 .leaf.right {
+  bottom: 45%;
   right: 50%;
-  bottom: 43%;
   transform: rotate(200deg);
 }
 
-/* Flower heads */
 .bloom {
   position: absolute;
   top: 0;
   left: 50%;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   transform: translateX(-50%);
   animation: sway 3s ease-in-out infinite alternate;
 }
@@ -124,70 +321,30 @@ html, body {
   background: var(--color);
   transform-origin: 50% 15px;
   transform: rotate(var(--angle));
-  box-shadow: 0 0 9px var(--color);
+  box-shadow: 0 0 7px rgba(255,255,255,.6);
 }
 
-.center {
+.flower-center {
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
   width: 9px;
   height: 9px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: #ffe59a;
-  box-shadow: 0 0 12px #ffce69;
+  background: #ffe58d;
+  box-shadow: 0 0 8px #ffc75c;
 }
 
-/* Ground */
-.ground {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 13%;
-  background: linear-gradient(transparent, #09140b);
-  z-index: 4;
-  pointer-events: none;
-}
-
-/* Center text */
-.message {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 96%;
+.footer {
+  margin-top: 35px;
   text-align: center;
-  font-family: Georgia, serif;
-  font-size: clamp(23px, 6.5vw, 42px);
-  font-weight: bold;
-  font-style: italic;
-  line-height: 1.8;
-  letter-spacing: .5px;
-  z-index: 10;
-  pointer-events: none;
+  color: #d36b9d;
+  font-size: 13px;
+  letter-spacing: 1px;
 }
 
-.message span {
-  display: inline-block;
-  opacity: 0;
-  background: linear-gradient(
-    180deg,
-    #fff0ac,
-    #ff83c4 48%,
-    #c4a0ff
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 8px rgba(255,105,180,.4));
-  animation: letterRise .7s cubic-bezier(.2,.8,.2,1) forwards;
-  animation-delay: var(--delay);
-}
-
-/* Animations */
 @keyframes grow {
-  from { transform: scaleY(0); }
   to { transform: scaleY(1); }
 }
 
@@ -196,86 +353,114 @@ html, body {
   to { rotate: 5deg; }
 }
 
-@keyframes letterRise {
-  0% {
-    opacity: 0;
-    transform: translateY(60px);
-  }
-  70% {
-    opacity: 1;
-    transform: translateY(-5px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes rainbow {
+  to { background-position: 250% center; }
 }
 
-@keyframes glowPulse {
-  from {
-    opacity: .15;
-    transform: translate(-50%, -50%) scale(.9);
-  }
-  to {
-    opacity: .32;
-    transform: translate(-50%, -50%) scale(1.15);
-  }
+@keyframes pop {
+  from { opacity: 0; transform: scale(.94); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-@media (max-width: 400px) {
-  .message {
-    font-size: 24px;
-    letter-spacing: 0;
+@media (prefers-reduced-motion: reduce) {
+  .falling, .greeting h1 {
+    animation-duration: 20s;
   }
 }
 </style>
 </head>
 
 <body>
-<div class="intro">
+<main class="page">
 
-  <div class="glow"></div>
+  <div class="fall-layer" id="fallLayer"></div>
 
-  <div class="flowers" id="flowers"></div>
+  <div class="content">
 
-  <div class="ground"></div>
+    <div class="page-label">💗 page 1</div>
 
-  <div class="message" id="message"></div>
+    <section class="card greeting">
+      <div>
+        <h1>Hey prettiest Girl,<br>SUMU 🎀👋</h1>
+        <p>♡ A little surprise made for you ♡</p>
+      </div>
+    </section>
 
-</div>
+    <section class="card question">
+      <h2>Are you crazy ?? 💕</h2>
+    </section>
+
+    <section class="buttons">
+      <button class="choice" onclick="answer('yes')">Yes 💗</button>
+      <button class="choice" onclick="answer('no')">No 💜</button>
+    </section>
+
+    <section class="result" id="result"></section>
+
+    <section class="flower-section">
+      <h2>Flower<br>animation 🌷</h2>
+      <p>A tiny garden full of love ✨</p>
+      <div class="garden" id="garden">
+        <div class="ground"></div>
+      </div>
+    </section>
+
+    <footer class="footer">MADE WITH 💗 FOR SUMU</footer>
+
+  </div>
+</main>
 
 <script>
-const garden = document.getElementById("flowers");
-const message = document.getElementById("message");
+/* Falling hearts and flowers */
+const fallLayer = document.getElementById("fallLayer");
 
-const colors = [
-  "#ff8eb7",
-  "#ffca62",
-  "#f5a5e8",
-  "#fff0a8",
-  "#e98ba1",
-  "#a9a2ff",
-  "#ffb7d5"
+const fallingEmojis = [
+  "💗", "💕", "💖", "💘", "💝",
+  "🌸", "🌷", "🌼", "🌺", "🩷",
+  "💞", "✨", "🪷", "🌹"
 ];
 
-let maxDelay = 0;
+for (let i = 0; i < 28; i++) {
+  const item = document.createElement("span");
+  item.className = "falling";
+  item.textContent =
+    fallingEmojis[Math.floor(Math.random() * fallingEmojis.length)];
 
-/* Create 48 flowers */
-for (let i = 0; i < 70; i++) {
+  item.style.setProperty("--x", Math.random() * 100 + "%");
+  item.style.setProperty("--size", (17 + Math.random() * 16) + "px");
+  item.style.setProperty("--duration", (6 + Math.random() * 7) + "s");
+  item.style.setProperty("--delay", (-Math.random() * 12) + "s");
+  item.style.setProperty("--drift", (-45 + Math.random() * 90) + "px");
+
+  fallLayer.appendChild(item);
+}
+
+/* Create the flower garden */
+const garden = document.getElementById("garden");
+
+const flowerColors = [
+  "#ff79b0",
+  "#ffc0d9",
+  "#d4a1ff",
+  "#ffcb69",
+  "#ff91a8",
+  "#a8c7ff",
+  "#fff0a8",
+  "#f5a5e8"
+];
+
+for (let i = 0; i < 15; i++) {
   const flower = document.createElement("div");
   flower.className = "flower";
 
-  const x = (i / 47) * 100;
-  const height = 75 + Math.random() * 180;
-  const width = 20 + Math.random() * 20;
-  const delay = 0.2 + Math.random() * 2.3;
-  const color = colors[
-    Math.floor(Math.random() * colors.length)
-  ];
+  const x = 3 + (i / 14) * 94;
+  const height = 75 + Math.random() * 125;
+  const width = 18 + Math.random() * 12;
+  const delay = Math.random() * 2.2;
+  const color =
+    flowerColors[Math.floor(Math.random() * flowerColors.length)];
 
-  maxDelay = Math.max(maxDelay, delay);
-
-  flower.style.left = `calc(${x}% - ${width / 2}px)`;
+  flower.style.setProperty("--x", x + "%");
   flower.style.setProperty("--h", height + "px");
   flower.style.setProperty("--w", width + "px");
   flower.style.setProperty("--delay", delay + "s");
@@ -304,5 +489,32 @@ for (let i = 0; i < 70; i++) {
   }
 
   const center = document.createElement("div");
-  center.className = "center";
-  bloom.
+  center.className = "flower-center";
+  bloom.appendChild(center);
+
+  flower.appendChild(bloom);
+  garden.appendChild(flower);
+}
+
+/* Yes / No interaction */
+function answer(choice) {
+  const result = document.getElementById("result");
+
+  if (choice === "yes") {
+    result.innerHTML =
+      "Hehe, I knew it! 😂💗<br>SUMU is officially crazy! 🎀🌸";
+  } else {
+    result.innerHTML =
+      "Achhaaa, tai naki? 👀💜<br>Amar kintu shondeho ache! 😂🌷";
+  }
+
+  result.style.display = "block";
+
+  result.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+</script>
+</body>
+</html>
