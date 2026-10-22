@@ -18,50 +18,7 @@ html, body {
   height: 100%;
   overflow: hidden;
   background: #020305;
-  font-family: Georgia, serif;
-}
-
-.intro {
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(
-      ellipse at 50% 75%,
-      #25172b 0%,
-      #0b0812 42%,
-      #020305 80%
-    );
-}
-
-/* Background glow */
-.glow {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 220px;
-  height: 150px;
-  transform: translate(-50%, -50%);
-  background: #ff69b4;
-  filter: blur(75px);
-  opacity: 0.22;
-  animation: glowPulse 3s ease-in-out infinite alternate;
-  z-index: 1;
-}
-
-/* Ground */
-.ground {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 15%;
-  background: linear-gradient(
-    transparent,
-    #07120b
-  );
-  z-index: 2;
+  font-family: Georgia  z-index: 2;
 }
 
 /* Flower garden */
@@ -298,17 +255,4 @@ for (let i = 0; i < 48; i++) {
     petal.className = "petal";
     petal.style.setProperty("--angle", (p * 45) + "deg");
     petal.style.setProperty("--color", color);
-    bloom.appendChild(petal);
-  }
-
-  const center = document.createElement("div");
-  center.className = "center";
-  bloom.appendChild(center);
-
-  flower.appendChild(bloom);
-  garden.appendChild(flower);
-}
-</script>
-
-</body>
-</html>
+    bloom
