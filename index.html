@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sumu ❤️ Sabbir</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;overflow:hidden;height:100dvh;
+  background:linear-gradient(135deg,#ffe3f0,#fceaff,#fff0f5);
+  font-family:Arial,sans-serif;color:#63264a;
+}
+#scene{
+  position:relative;width:100%;height:100%;
+  overflow:hidden;transition:background 1s;
+}
+#title{
+  position:absolute;top:7%;width:100%;
+  text-align:center;font-size:clamp(22px,6vw,35px);
+  color:#e84393;text-shadow:0 2px white;
+}
+.person{
+  position:absolute;bottom:24%;width:100px;
+  text-align:center;transition:left 2.5s ease,right 2.5s ease;
+}
+#sumu{left:-130px}
+#sabbir{right:-130px}
+.person .name{
+  font-weight:bold;color:#d63384;font-size:19px;
+  margin-bottom:8px;text-shadow:0 1px white;
+}
+.avatar{font-size:67px;line-height:1.2}
+.walk{animation:walk .35s infinite alternate}
+@keyframes walk{
+  from{transform:rotate(-7deg) translateY(0)}
+  to{transform:rotate(7deg) translateY(-5px)}
+}
+#sumu.arrived{left:calc(50% - 110px)}
+#sabbir.arrived{right:calc(50% - 110px)}
+#sabbir.kneel .avatar{
+  transform:rotate(65deg) translateY(12px) scale(.9);
+}
+#sabbir.kneel{bottom:20%}
+#sumu{z-index:3} #sabbir{z-index:2}
+
+#dialogue{
+  position:absolute;top:25%;left:5%;width:90%;
+  min-height:100px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:12px;
+}
+#speaker{font-size:17px;font-weight:bold;color:#d63384}
+#words{font-size:clamp(18px,4.8vw,25px);font-weight:bold}
+#next{
+  border:0;border-radius:25px;padding:12px 25px;
+  background:#ed69aa;color:white;font-size:16px;
+  box-shadow:0 4px 12px #d6338444;cursor:pointer;
+}
+#choices{
+  display:none;position:absolute;bottom:9%;width:100%;
+  justify-content:center;gap:20px;z-index:5;
+}
+.choice{
+  padding:13px 32px;border:0;border-radius:28px;
+  font-size:20px;font-weight:bold;cursor:pointer;
+  box-shadow:0 5px 14px #0002;
+}
+#yes{background:#ff64a6;color:white}
+#no{background:white;color:#d63384}
+#kneelText{
+  display:none;position:absolute;bottom:37%;width:100%;
+  text-align:center;font-size:22px;font-weight:bold;
+  color:#d63384;
+}
+#celebration,#broken{
+  display:none;position:absolute;inset:0;z-index:10;
+}
+#celebration{
+  background:#18091e;color:white;text-align:center;
+}
+#celebration h1{margin-top:30vh;color:#ff82bd}
+#celebration p{font-size:21px}
+.firework{
+  position:absolute;font-size:45px;
+  animation:boom 1.1s infinite alternate;
+}
+@keyframes boom{
+  from{transform:scale(.5) rotate(0deg);opacity:.5}
+  to{transform:scale(1.5) rotate(30deg);opacity:1}
+}
+#broken{background:#000;overflow:hidden}
+.panel{
+  position:absolute;top:0;width:50%;height:100%;
+  background:#000;transition:transform 1.2s ease-in;
+}
+#leftPanel{left:0;border-right:1px solid #222}
+#rightPanel{right:0}
+#broken.split #leftPanel{transform:translateX(-105%)}
+#broken.split #rightPanel{transform:translateX(105%)}
+#heart{
+  position:absolute;left:50%;top:45%;
+  transform:translate(-50%,-50%) scale(0);
+  font-size:100px;z-index:3;
+  filter:drop-shadow(0 0 20px #ff1493);
+  transition:transform .7s;
+}
+#broken.heartOn #heart{
+  transform:translate(-50%,-50%) scale(1);
+}
+#archer{
+  position:absolute;left:-130px;bottom:5%;
+  z-index:5;text-align:center;width:110px;
+  transition:left 1.6s ease;
+}
+#archer .avatar{font-size:65px}
+#archer .name{color:#ff6eaf;font-weight:bold}
+#arrow{
+  display:none;position:absolute;left:calc(50% - 100px);
+  top:45%;font-size:48px;z-index:6;
+  transform:rotate(-15deg);
+}
+#broken.shoot #arrow{
+  display:block;animation:shoot .65s ease-in forwards;
+}
+@keyframes shoot{
+  from{left:100px;top:80%;transform:rotate(-15deg)}
+  to{left:calc(50% - 15px);top:43%;transform:rotate(-15deg)}
+}
+#heart.pop{animation:pop .35s forwards}
+@keyframes pop{
+  to{transform:translate(-50%,-50%) scale(1.8);opacity:0}
+}
+#restart{
+  display:none;position:absolute;bottom:5%;left:50%;
+  transform:translateX(-50%);white-space:nowrap;
+  border:0;border-radius:25px;padding:12px 20px;
+  background:#ff6eaf;color:white;font-size:16px;z-index:9;
+}
+@media(max-height:600px){
+  .person{bottom:15%}
+  #dialogue{top:17%}
+  #kneelText{bottom:29%}
+}
+</style>
+</head>
+
+<body>
+<div id="scene">
+  <div id="title">A Little Love Story 💗</div>
+
+  <div id="dialogue">
+    <div id="speaker">A special moment...</div>
+    <div id="words">Someone is coming 👀</div>
+    <button id="next">Let's see 💌</button>
+  </div>
+
+  <div id="sumu" class="person">
+    <div class="name">Sumu</div>
+    <div class="avatar">👧🏻</div>
+  </div>
+
+  <div id="sabbir" class="person">
+    <div class="name">Sabbir</div>
+    <div class="avatar">👦🏻</div>
+  </div>
+
+  <div id="kneelText">Sabbir has something to ask... 💍</div>
+
+  <div id="choices">
+    <button class="choice" id="yes">YES 💖</button>
+    <button class="choice" id="no">NO 💔</button>
+  </div>
+
+  <div id="celebration">
+    <div class="firework" style="left:10%;top:15%">🎆</div>
+    <div class="firework" style="right:12%;top:22%;animation-delay:.3s">🎇</div>
+    <div class="firework" style="left:25%;top:55%;animation-delay:.5s">✨</div>
+    <div class="firework" style="right:20%;top:60%;animation-delay:.2s">🎆</div>
+    <div class="firework" style="left:45%;top:12%;animation-delay:.7s">💥</div>
+    <h1>YAYYYY! 💖</h1>
+    <p>Sumu + Sabbir = A beautiful story! 🥹</p>
+    <p>You're so special, Sumu! 🌷</p>
+    <button class="choice" onclick="location.reload()">Replay ↻</button>
+  </div>
+
+  <div id="broken">
+    <div class="panel" id="leftPanel"></div>
+    <div class="panel" id="rightPanel"></div>
+    <div id="heart">💗</div>
+    <div id="arrow">🏹</div>
+    <div id="archer">
+      <div class="name">Sumu</div>
+      <div class="avatar">👧🏻</div>
+    </div>
+    <button id="restart" onclick="location.reload()">Replay Story ↻</button>
+  </div>
+</div>
+
+<script>
+const sumu = document.getElementById('sumu');
+const sabbir = document.getElementById('sabbir');
+const speaker = document.getElementById('speaker');
+const words = document.getElementById('words');
+const next = document.getElementById('next');
+const choices = document.getElementById('choices');
+const kneelText = document.getElementById('kneelText');
+const broken = document.getElementById('broken');
+
+let step = 0;
+
+const conversation = [
+  ['Sumu','Tumi ki kichu bolte chau?'],
+  ['Sabbir','Yes, but kivabe bolbo bujtachi na! 🤧'],
+  ['Sumu','Bole felo 🙌'],
+  ['Sabbir','Hey, Pretty girl, Will you be MINE ?? 💗']
+];
+
+function showLine(i){
+  speaker.textContent = conversation[i][0];
+  words.textContent = conversation[i][1];
+}
+
+next.addEventListener('click',()=>{
+  if(step===0){
+    next.disabled=true;
+    sumu.classList.add('walk');
+    sabbir.classList.add('walk');
+
+    // Characters walk toward the center
+    sumu.classList.add('arrived');
+    sabbir.classList.add('arrived');
+
+    setTimeout(()=>{
+      sumu.classList.remove('walk');
+      sabbir.classList.remove('walk');
+      showLine(0);
+      step=1;
+      next.textContent='Next 💌';
+      next.disabled=false;
+    },2600);
+    return;
+  }
+
+  if(step===1){
+    showLine(1);
+    step=2;
+  }else if(step===2){
+    showLine(2);
+    step=3;
+  }else if(step===3){
+    sabbir.classList.add('kneel');
+    kneelText.style.display='block';
+    speaker.textContent='Sabbir 💗';
+    words.textContent='Hey, Pretty girl, Will you be MINE ??';
+    next.textContent='Choose your answer 💕';
+    step=4;
+  }else if(step===4){
+    next.style.display='none';
+    kneelText.style.display='none';
+    choices.style.display='flex';
+  }
+});
+
+document.getElementById('yes').addEventListener('click',()=>{
+  document.getElementById('celebration').style.display='block';
+});
+
+document.getElementById('no').addEventListener('click',()=>{
+  broken.style.display='block';
+
+  // Smooth split-screen transition
+  requestAnimationFrame(()=>broken.classList.add('split'));
+
+  setTimeout(()=>{
+    document.getElementById('heart').classList.add('heartOn');
+  },1400);
+
+  // Sumu enters with an arrow
+  setTimeout(()=>{
+    document.getElementById('archer').style.left='8%';
+  },2300);
+
+  // Aim and shoot at the heart
+  setTimeout(()=>{
+    broken.classList.add('shoot');
+  },4200);
+
+  setTimeout(()=>{
+    const heart=document.getElementById('heart');
+    heart.classList.remove('heartOn');
+    heart.classList.add('pop');
+    document.getElementById('restart').style.display='block';
+  },4950);
+});
+</script>
+</body>
+</html>
